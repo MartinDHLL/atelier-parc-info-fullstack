@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="UTF-8" />
-    <title>{% block title %}Welcome!{% endblock %}</title>
+    <title>{% block title %}Atelier Step{% endblock %}</title>
     <link
       rel="icon"
       href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>"
@@ -26,19 +26,35 @@
       <section class="flex justify-start h-[5%] w-full gap-x-1">
         {# Dashboard button #}
         {{
-          include("_buttons/menuButton.html.twig", { buttonTitle: "Dashboard" })
+          include("_buttons/menuButton.html.twig", {
+            buttonTitle: "Dashboard",
+            route: "home",
+            imgSrc: "table"
+          })
         }}
         {# Tickets button #}
         {{
-          include("_buttons/menuButton.html.twig", { buttonTitle: "Tickets" })
+          include("_buttons/menuButton.html.twig", {
+            buttonTitle: "Tickets",
+            route: "tickets",
+            imgSrc: "ticket"
+          })
         }}
         {# Hardwares button #}
         {{
-          include("_buttons/menuButton.html.twig", { buttonTitle: "Hardwares" })
+          include("_buttons/menuButton.html.twig", {
+            buttonTitle: "Hardwares",
+            route: "hardwares",
+            imgSrc: "table"
+          })
         }}
         {# Profile button #}
         {{
-          include("_buttons/menuButton.html.twig", { buttonTitle: "Profile" })
+          include("_buttons/menuButton.html.twig", {
+            buttonTitle: "Profile",
+            route: "profile",
+            imgSrc: "table"
+          })
         }}
       </section>
       {% include "appBase.html.twig" %}

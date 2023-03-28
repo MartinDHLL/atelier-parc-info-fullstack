@@ -9,7 +9,8 @@
 import "./styles/app.css";
 
 import "./img/cat.jpeg";
-import "./img/table-columns.svg";
+import "./img/table.svg";
+import "./img/ticket.svg";
 
 // start the Stimulus application
 import "./bootstrap";
