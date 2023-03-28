@@ -1,0 +1,14 @@
+<a href="{{path("app_home")}}">
+    <span
+      class="{{
+        (title ?? null) is same as(buttonTitle) ? "bg-blue-200" 
+        : "bg-indigo-100"}} 
+        p-1 flex rounded-tr-lg rounded-tl-lg border-[1px] border-blue-800 hover:bg-blue-300">
+      <img
+        src="{{ asset('build/images/table-columns.svg') }}"
+        alt="logo"
+        class="h-5"
+      />
+      <p>{{buttonTitle}}</p>
+    </span>
+</a>
