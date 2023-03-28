@@ -11,6 +11,9 @@ import "./styles/app.css";
 import "./img/cat.jpeg";
 import "./img/table.svg";
 import "./img/ticket.svg";
+import "./img/hardware.svg";
+import "./img/profile.svg";
+import "./img/logo-step.png";
 
 // start the Stimulus application
 import "./bootstrap";

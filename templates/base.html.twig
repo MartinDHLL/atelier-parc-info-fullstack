@@ -3,62 +3,30 @@
   <head>
     <meta charset="UTF-8" />
     <title>{% block title %}Atelier Step{% endblock %}</title>
-    <link
-      rel="icon"
-      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>"
-    />
-    {% block stylesheets %}
-    {{
-      encore_entry_link_tags("app")
-    }}
-    {% endblock %} {% block javascripts %}
-    {{
-      encore_entry_script_tags("app")
-    }}
-    {% endblock %}
+    {% block stylesheets %}{{encore_entry_link_tags("app")}}{% endblock %} 
+    {% block javascripts %}{{encore_entry_script_tags("app")}}{% endblock %}
   </head>
 
-  <header>{% include("_partials/header.html.twig") %}</header>
-
-  <body>
+  <body class="h-screen w-full">
+    {% include("_partials/header.html.twig") %} 
     {% if app.user %}
-    <main class="flex flex-col h-full w-full fixed p-5">
+    <main class="flex flex-col h-[90%] w-full p-2">
       <section class="flex justify-start h-[5%] w-full gap-x-1">
         {# Dashboard button #}
-        {{
-          include("_buttons/menuButton.html.twig", {
-            buttonTitle: "Dashboard",
-            route: "home",
-            imgSrc: "table"
-          })
-        }}
+        {{include("_buttons/menuButton.html.twig", {buttonTitle: "Dashboard",route: "home",imgSrc: "table"})}}
         {# Tickets button #}
-        {{
-          include("_buttons/menuButton.html.twig", {
-            buttonTitle: "Tickets",
-            route: "tickets",
-            imgSrc: "ticket"
-          })
-        }}
+        {{include("_buttons/menuButton.html.twig", {buttonTitle: "Tickets",route: "tickets",imgSrc: "ticket"})}}
         {# Hardwares button #}
-        {{
-          include("_buttons/menuButton.html.twig", {
-            buttonTitle: "Hardwares",
-            route: "hardwares",
-            imgSrc: "table"
-          })
-        }}
+        {{include("_buttons/menuButton.html.twig", {buttonTitle: "Hardwares",route: "hardwares",imgSrc: "hardware"})}}
         {# Profile button #}
-        {{
-          include("_buttons/menuButton.html.twig", {
-            buttonTitle: "Profile",
-            route: "profile",
-            imgSrc: "table"
-          })
-        }}
+        {{include("_buttons/menuButton.html.twig", {buttonTitle: "Profile",route: "profile",imgSrc: "profile"})}}
       </section>
-      {% include "appBase.html.twig" %}
+      <section class="bg-indigo-100 flex h-[95%] w-full p-2 border-2 border-black">
+        {% block app %}{% endblock %}
+      </section>
     </main>
-    {% else %} {% block body %}{% endblock %} {% endif %}
+    {% else %} 
+    {% block body %}{% endblock %} 
+    {% endif %}
   </body>
 </html>

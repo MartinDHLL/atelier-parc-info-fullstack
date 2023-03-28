@@ -1,11 +1,10 @@
-<div class="flex flex-row">
-  <div>
-    <img class="h-10" src="{{ asset("build/images/cat.jpeg") }}" alt="image de
-    chat" />
+<header class="flex flex-row fixed">
+  <div class="">
+    <img class="object-cover h-14 border-blue-900 border-2" src="{{asset("build/images/cat.jpeg")}}" alt="image de chat" />
   </div>
-  <div>
-    {#
-    <p>{{ app.user.name }}</p>
-    #}
+  <div class="flex h-full flex-col items-center justify-center">
+    <p class="bg-blue-900 text-white p-1 pr-3 rounded-r-lg">
+      {{ app.user.name }}
+    </p>
   </div>
-</div>
+</header>

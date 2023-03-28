@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block app %}
+
+<div class="w-full h-full flex flex-col">
+  <div class="h-full border-black border-2 rounded-xl m-1 shadow-lg p-1 bg-white">
+    {% block C %}
+    {% if widgetC %}
+      {{ include('_widgets/' ~ widgetC ~ '.html.twig') }}
+    {% endif %}
+    {% endblock %}
+  </div>
+</div>
+
+{% endblock %}
