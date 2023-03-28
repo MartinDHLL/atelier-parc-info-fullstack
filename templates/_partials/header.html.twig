@@ -1,7 +1,6 @@
-<div class="w-full h-[10%] flex flex-row justify-between p-2">
+<header class="w-full h-[10%] flex flex-row justify-between p-2">
   {% if app.user %} 
   {% include("_partials/profile.html.twig") %}
-  <a href="logout" class="">deconnexion</a>
   {% endif %} 
   <img class="h-10" src="{{ asset("build/images/logo-step.png") }}" alt="Logo Step" />
-</div>
+</header>

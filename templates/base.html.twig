@@ -8,8 +8,8 @@
   </head>
 
   <body class="h-screen w-full">
-    {% include("_partials/header.html.twig") %} 
     {% if app.user %}
+    {% include("_partials/header.html.twig") %} 
     <main class="flex flex-col h-[90%] w-full p-2">
       <section class="flex justify-start h-[5%] w-full gap-x-1">
         {# Dashboard button #}
@@ -21,7 +21,7 @@
         {# Profile button #}
         {{include("_buttons/menuButton.html.twig", {buttonTitle: "Profile",route: "profile",imgSrc: "profile"})}}
       </section>
-      <section class="bg-indigo-100 flex h-[95%] w-full p-2 border-2 border-black">
+      <section class="bg-indigo-100 flex h-[95%] w-full p-2 border-2 border-blue-900">
         {% block app %}{% endblock %}
       </section>
     </main>

@@ -1,10 +1,7 @@
-<header class="flex flex-row fixed">
-  <div class="">
-    <img class="object-cover h-14 border-blue-900 border-2" src="{{asset("build/images/cat.jpeg")}}" alt="image de chat" />
+<div class="flex flex-row">
+    <img class="object-cover border-blue-900 border-2" src="{{asset("build/images/cat.jpeg")}}" alt="image de chat" />
+      <p class="bg-blue-900 text-white pl-3 pr-3 rounded-r-lg place-self-center">
+        {{ app.user.name }}
+      </p>
+    <a class="self-center ml-5 bg-red-500 pl-3 pr-3 rounded-2xl" href="logout" >déconnexion</a>
   </div>
-  <div class="flex h-full flex-col items-center justify-center">
-    <p class="bg-blue-900 text-white p-1 pr-3 rounded-r-lg">
-      {{ app.user.name }}
-    </p>
-  </div>
-</header>
