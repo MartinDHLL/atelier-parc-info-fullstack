@@ -45,7 +45,7 @@ class Issue
 
     public function setIntitule(string $intitule): self
     {
-        $this->intitule = $intitule;
+        $this->intitule = strtolower($intitule);
 
         return $this;
     }
@@ -57,7 +57,7 @@ class Issue
 
     public function setDescription(string $description): self
     {
-        $this->description = $description;
+        $this->description = strtolower($description);
 
         return $this;
     }

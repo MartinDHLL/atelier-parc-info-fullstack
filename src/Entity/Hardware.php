@@ -48,7 +48,7 @@ class Hardware
 
     public function setLibelle(string $libelle): self
     {
-        $this->libelle = $libelle;
+        $this->libelle = strtolower($libelle);
 
         return $this;
     }

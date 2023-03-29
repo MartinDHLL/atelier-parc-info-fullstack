@@ -59,7 +59,7 @@ class EntrepriseType extends AbstractType
                 ]
             ])
             ->add('submit', SubmitType::class, [
-                'label' => 'Créer',
+                'label' => $options['action'] === 'add' ? 'Créer' : 'Modifier',
                 'attr' => [
                     'class' => 'bg-green-500 hover:bg-green-800 text-white p-1 pl-4 pr-4 rounded-xl'
                 ]
@@ -71,6 +71,7 @@ class EntrepriseType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Entreprise::class,
+            'action' => 'add'
         ]);
     }
 }

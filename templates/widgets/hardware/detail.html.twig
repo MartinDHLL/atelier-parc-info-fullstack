@@ -1,0 +1,17 @@
+<div class="overflow-y-scroll h-full flex flex-col gap-y-2 items-center text-gray-600">
+    <p>Détails de <span class="text-black">{{hardware.libelle}}</span> :</p>
+    <p>Appartient à : <a class="text-orange-500" href="{{path("app_entreprises_detail", {id:hardware.entreprise.id})}}">{{ hardware.entreprise.nom|capitalize }} {{ hardware.entreprise.prenom ? "-" ~ hardware.entreprise.prenom|capitalize}}</a></p>
+    <p>type de matériel : <span class="text-black">{{ hardware.type }}</span></p>
+    <p>Numéro de série : <span class="text-black">{{ hardware.serialNum }}</span></p>
+    <div class="flex flex-row justify-center gap-x-6">
+        <a href="{{path("app_hardwares_edit", { id:hardware.id })}}"><img class="h-10" src="{{asset("build/images/edit.svg")}}" alt="delete icon"></a>
+        <a href="{{path("app_hardwares_remove", { id:hardware.id })}}"><img class="h-10" src="{{asset("build/images/delete-item.svg")}}" alt="delete icon"></a>
+    </div>
+    <hr class="w-full ">
+    <p>Tickets associés :</p>
+    {% for ticket in hardware.tickets %}
+    {# <a href="{{path("app_ticket", { id:ticket.id })}}">{{ticket.id}}</a> #}
+    {% else %}
+    <p class="text-black">Aucun tickets</p>
+    {% endfor %}        
+</div>

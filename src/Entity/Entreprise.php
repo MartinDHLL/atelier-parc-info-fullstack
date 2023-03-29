@@ -6,6 +6,7 @@ use App\Repository\EntrepriseRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use phpDocumentor\Reflection\PseudoTypes\LowercaseString;
 
 #[ORM\Entity(repositoryClass: EntrepriseRepository::class)]
 class Entreprise
@@ -56,7 +57,7 @@ class Entreprise
 
     public function setEmail(string $email): self
     {
-        $this->email = $email;
+        $this->email = strtolower($email);
 
         return $this;
     }
@@ -68,7 +69,7 @@ class Entreprise
 
     public function setNom(string $nom): self
     {
-        $this->nom = $nom;
+        $this->nom = strtolower($nom);
 
         return $this;
     }
@@ -80,7 +81,7 @@ class Entreprise
 
     public function setPrenom(?string $prenom): self
     {
-        $this->prenom = $prenom;
+        $this->prenom = strtolower($prenom);
 
         return $this;
     }
@@ -92,7 +93,7 @@ class Entreprise
 
     public function setAdresse(string $adresse): self
     {
-        $this->adresse = $adresse;
+        $this->adresse = strtolower($adresse);
 
         return $this;
     }
@@ -116,7 +117,7 @@ class Entreprise
 
     public function setVille(string $ville): self
     {
-        $this->ville = $ville;
+        $this->ville = strtolower($ville);
 
         return $this;
     }
@@ -161,5 +162,10 @@ class Entreprise
         }
 
         return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->nom;
     }
 }

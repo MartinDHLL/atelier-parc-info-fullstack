@@ -19,11 +19,12 @@
         {# Entreprises button #}
         {{include("_buttons/menuButton.html.twig", {buttonTitle: "Entreprises", route: "entreprises", imgSrc: "entreprise"})}}
         {# Hardwares button #}
-        {{include("_buttons/menuButton.html.twig", {buttonTitle: "Hardwares", route: "hardwares", imgSrc: "hardware"})}}
+        {{include("_buttons/menuButton.html.twig", {buttonTitle: "Matériel", route: "hardwares", imgSrc: "hardware"})}}
         {# Profile button #}
-        {{include("_buttons/menuButton.html.twig", {buttonTitle: "Profile", route: "profile", imgSrc: "profile"})}}
+        {{include("_buttons/menuButton.html.twig", {buttonTitle: "Profil", route: "profile", imgSrc: "profile"})}}
       </section>
       <section class="bg-indigo-100 flex h-[95%] w-full p-2 border-2 border-blue-900">
+        {# app core location [model A, model B or model C] #}
         {% block app %}{% endblock %}
       </section>
     </main>

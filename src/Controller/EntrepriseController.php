@@ -30,7 +30,7 @@ class EntrepriseController extends AbstractController
     public function add(EntrepriseRepository $entrepriseRepo, Request $request): Response
     {
         $entreprises = $entrepriseRepo->findAll();
-        $form = $this->createForm(EntrepriseType::class)->handleRequest($request);
+        $form = $this->createForm(EntrepriseType::class, null, options:["action" => "add"])->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()) {
             $entreprise = $form->getData();
             $entrepriseRepo->save($entreprise, true);
@@ -50,7 +50,7 @@ class EntrepriseController extends AbstractController
     public function edit(Entreprise $entreprise, EntrepriseRepository $entrepriseRepo, Request $request): Response
     {
         $entreprises = $entrepriseRepo->findAll();
-        $form = $this->createForm(EntrepriseType::class)->handleRequest($request);
+        $form = $this->createForm(EntrepriseType::class, $entreprise, options:["action" => "edit"])->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()) {
             $entreprise = $form->getData();
             $entrepriseRepo->save($entreprise, true);

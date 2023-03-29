@@ -53,7 +53,7 @@ class Statut
 
     public function setType(string $type): self
     {
-        $this->type = $type;
+        $this->type = strtolower($type);
 
         return $this;
     }

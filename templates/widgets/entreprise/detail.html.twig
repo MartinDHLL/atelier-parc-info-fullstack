@@ -1,11 +1,21 @@
-<div class="overflow-y-scroll h-full flex flex-col gap-y-2">
-    <p>Détails de {{entreprise.nom}} :</p>
-    <p>Email : {{entreprise.email}}</p>
-    <p>Nom : {{entreprise.nom}}</p>
-    <p>Prénom : {{entreprise.prenom}}</p>
-    <p>Adresse : {{entreprise.adresse}}</p>
-    <p>Code Postal : {{entreprise.codePostal}}</p>
-    <p>Ville : {{entreprise.ville}}</p>
-    <p>Téléphone : {{entreprise.telephone}}</p>
-    <a href="{{path("app_entreprises_remove", { id:entreprise.id })}}"><img class="h-10" src="{{asset("build/images/delete-user.svg")}}" alt="delete icon"></a>
+<div class="overflow-y-scroll h-full flex flex-col gap-y-2 items-center text-gray-600">
+    <p>Détails de <span class="text-black">{{entreprise.nom|capitalize}}</span> :</p>
+    <p>Email : <span class="text-black">{{entreprise.email}}</span></p>
+    <p>Nom : <span class="text-black">{{entreprise.nom|capitalize}}</span></p>
+    <p>Département ou prénom : <span class="text-black">{{entreprise.prenom|capitalize}}</span></p>
+    <p>Adresse : <span class="text-black">{{entreprise.adresse|capitalize}}</span></p>
+    <p>Code Postal : <span class="text-black">{{entreprise.codePostal}}</span></p>
+    <p>Ville : <span class="text-black">{{entreprise.ville|capitalize}}</span></p>
+    <p>Téléphone : <span class="text-black">{{entreprise.telephone}}</span></p>
+    <div class="flex flex-row justify-center gap-x-6">
+        <a href="{{path("app_entreprises_edit", { id:entreprise.id })}}"><img class="h-10" src="{{asset("build/images/edit.svg")}}" alt="delete icon"></a>
+        <a href="{{path("app_entreprises_remove", { id:entreprise.id })}}"><img class="h-10" src="{{asset("build/images/delete-user.svg")}}" alt="delete icon"></a>
+    </div>
+    <hr class="w-full ">
+    <p>Matériels associés :</p>
+    {% for hardware in entreprise.hardwares %}
+    <a class="text-black" href="{{path("app_hardwares_detail", {id:hardware.id})}}">{{ hardware.libelle }} - {{ hardware.type }}</a>
+    {% else %}
+    <p class="text-black">Aucun tickets</p>
+    {% endfor %}
 </div>

@@ -15,8 +15,8 @@ class ProfileController extends AbstractController
     public function index(): Response
     {
         return $this->render('_models/modelC.html.twig', [ // // Modele C qui contient 1 seul emplacement de widget
-            'title' => 'Profile',
-            'widgetA' => 'test', // nom du widget A dans le dossier template '_widgets'
+            'title' => 'Profil',
+            'widgetA' => 'profile/show', // nom du widget A dans le dossier template '_widgets'
         ]);
     }
 }

@@ -14,7 +14,13 @@ class TicketType extends AbstractType
         $builder
             ->add('intitule')
             ->add('description')
-            ->add('hardware');
+            ->add('hardware')
+            ->add('submit', SubmitType::class, [
+                'label' => 'Créer',
+                'attr' => [
+                    'class' => 'bg-green-500 hover:bg-green-800 text-white p-1 pl-4 pr-4 rounded-xl'
+                ]
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

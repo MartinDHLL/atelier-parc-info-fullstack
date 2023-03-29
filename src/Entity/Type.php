@@ -15,10 +15,10 @@ class Type
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $code = null;
+    #[ORM\Column]
+    private ?int $code = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length:255)]
     private ?string $nom = null;
 
     #[ORM\OneToMany(mappedBy: 'type', targetEntity: Hardware::class)]
@@ -34,12 +34,12 @@ class Type
         return $this->id;
     }
 
-    public function getCode(): ?string
+    public function getCode(): ?int
     {
         return $this->code;
     }
 
-    public function setCode(string $code): self
+    public function setCode(int $code): self
     {
         $this->code = $code;
 
@@ -53,7 +53,7 @@ class Type
 
     public function setNom(string $nom): self
     {
-        $this->nom = $nom;
+        $this->nom = strtolower($nom);
 
         return $this;
     }
@@ -86,5 +86,10 @@ class Type
         }
 
         return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->nom;
     }
 }

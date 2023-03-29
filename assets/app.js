@@ -15,6 +15,8 @@ import "./img/hardware.svg";
 import "./img/profile.svg";
 import "./img/entreprise.svg";
 import "./img/delete-user.svg";
+import "./img/delete-item.svg";
+import "./img/edit.svg";
 import "./img/logo-step.png";
 
 // start the Stimulus application
