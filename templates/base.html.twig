@@ -11,15 +11,17 @@
     {% if app.user %}
     {% include("_partials/header.html.twig") %} 
     <main class="flex flex-col h-[90%] w-full p-2">
-      <section class="flex justify-start h-[5%] w-full gap-x-1">
+      <section class="flex justify-start w-full gap-x-1">
         {# Dashboard button #}
-        {{include("_buttons/menuButton.html.twig", {buttonTitle: "Dashboard",route: "home",imgSrc: "table"})}}
+        {{include("_buttons/menuButton.html.twig", {buttonTitle: "Dashboard", route: "home", imgSrc: "table"})}}
         {# Tickets button #}
-        {{include("_buttons/menuButton.html.twig", {buttonTitle: "Tickets",route: "tickets",imgSrc: "ticket"})}}
+        {{include("_buttons/menuButton.html.twig", {buttonTitle: "Tickets", route: "tickets", imgSrc: "ticket"})}}
+        {# Entreprises button #}
+        {{include("_buttons/menuButton.html.twig", {buttonTitle: "Entreprises", route: "entreprises", imgSrc: "hardware"})}}
         {# Hardwares button #}
-        {{include("_buttons/menuButton.html.twig", {buttonTitle: "Hardwares",route: "hardwares",imgSrc: "hardware"})}}
+        {{include("_buttons/menuButton.html.twig", {buttonTitle: "Hardwares", route: "hardwares", imgSrc: "hardware"})}}
         {# Profile button #}
-        {{include("_buttons/menuButton.html.twig", {buttonTitle: "Profile",route: "profile",imgSrc: "profile"})}}
+        {{include("_buttons/menuButton.html.twig", {buttonTitle: "Profile", route: "profile", imgSrc: "profile"})}}
       </section>
       <section class="bg-indigo-100 flex h-[95%] w-full p-2 border-2 border-blue-900">
         {% block app %}{% endblock %}

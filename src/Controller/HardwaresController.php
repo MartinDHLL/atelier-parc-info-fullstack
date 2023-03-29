@@ -16,9 +16,9 @@ class HardwaresController extends AbstractController
     {
         return $this->render('_models/modelB.html.twig', [ // Modele B qui contient 2 emplacements de widget
             'title' => 'Hardwares',
-            'widgetA' => 'ticketsShow', // nom du widget A dans le dossier template '_widgets'
-            'widgetB' => 'ticketsShow', // nom du widget B dans le dossier template '_widgets'
-            'widgetC' => 'ticketsShow', // nom du widget C dans le dossier template '_widgets'
+            'widgetA' => 'test', // nom du widget A dans le dossier template '_widgets'
+            'widgetB' => 'test', // nom du widget B dans le dossier template '_widgets'
+            'widgetC' => 'test', // nom du widget C dans le dossier template '_widgets'
         ]);
     }
 }

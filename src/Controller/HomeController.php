@@ -16,9 +16,9 @@ class HomeController extends AbstractController
     {
         return $this->render('_models/modelA.html.twig', [ // Modele A qui contient 3 emplacements de widget
             'title' => 'Dashboard',
-            'widgetA' => 'ticketsShow', // nom du widget A dans le dossier template '_widgets'
-            'widgetB' => 'ticketsShow', // nom du widget B dans le dossier template '_widgets'
-            'widgetC' => 'ticketsShow', // nom du widget C dans le dossier template '_widgets'
+            'widgetA' => 'test', // nom du widget A dans le dossier template '_widgets'
+            'widgetB' => 'test', // nom du widget B dans le dossier template '_widgets'
+            'widgetC' => 'test', // nom du widget C dans le dossier template '_widgets'
         ]);
     }
 }
