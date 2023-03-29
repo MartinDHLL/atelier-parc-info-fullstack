@@ -46,6 +46,26 @@ class EntrepriseController extends AbstractController
         ]);
     }
 
+    #[Route('/edit/{id}', name: '_edit')]
+    public function edit(Entreprise $entreprise, EntrepriseRepository $entrepriseRepo, Request $request): Response
+    {
+        $entreprises = $entrepriseRepo->findAll();
+        $form = $this->createForm(EntrepriseType::class)->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid()) {
+            $entreprise = $form->getData();
+            $entrepriseRepo->save($entreprise, true);
+            return $this->redirectToRoute('app_entreprises');
+        }
+
+        return $this->render('_models/modelB.html.twig', [ // Modele B qui contient 2 emplacements de widget
+            'title' => 'Entreprises',
+            'widgetA' => 'entreprise/show', // nom du widget A dans le dossier template '_widgets'
+            'widgetB' => 'form', // nom du widget B dans le dossier template '_widgets'
+            'entreprises' => $entreprises,
+            'form' => $form
+        ]);
+    }
+
     #[Route('/detail/{id}', name: '_detail')]
     public function detail(Entreprise $entreprise, EntrepriseRepository $entrepriseRepo): Response
     {
