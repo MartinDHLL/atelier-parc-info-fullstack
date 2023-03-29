@@ -1,0 +1,9 @@
+<div class="overflow-y-scroll h-full flex flex-col gap-y-2">
+    {# ajouter boutons ajouter, modifier, supprimer #}
+    
+    {% for ticket in tickets %} {# ajouter index isSelected avec association de l'id pour changer la variation de la classe en cas d'appartition de form pour edit #}
+        <a>{{ ticket.email }}</a>
+    {% else %}
+        <p>Aucun tickets</p>
+    {% endfor %}
+</div>

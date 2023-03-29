@@ -8,11 +8,13 @@
 // any CSS you import will output into a single css file (app.css in this case)
 import "./styles/app.css";
 
-import "./img/cat.jpeg";
+import "./img/person.png";
 import "./img/table.svg";
 import "./img/ticket.svg";
 import "./img/hardware.svg";
 import "./img/profile.svg";
+import "./img/entreprise.svg";
+import "./img/delete-user.svg";
 import "./img/logo-step.png";
 
 // start the Stimulus application

@@ -1,0 +1,11 @@
+<div class="overflow-y-scroll h-full flex flex-col gap-y-2">
+    <p>Détails de {{entreprise.nom}} :</p>
+    <p>Email : {{entreprise.email}}</p>
+    <p>Nom : {{entreprise.nom}}</p>
+    <p>Prénom : {{entreprise.prenom}}</p>
+    <p>Adresse : {{entreprise.adresse}}</p>
+    <p>Code Postal : {{entreprise.codePostal}}</p>
+    <p>Ville : {{entreprise.ville}}</p>
+    <p>Téléphone : {{entreprise.telephone}}</p>
+    <a href="{{path("app_entreprises_remove", { id:entreprise.id })}}"><img class="h-10" src="{{asset("build/images/delete-user.svg")}}" alt="delete icon"></a>
+</div>

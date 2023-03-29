@@ -15,10 +15,10 @@ class Ticket
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable:true)]
     private ?int $number = null;
 
-    #[ORM\Column(length: 255, nullable:true)]
+    #[ORM\Column(length: 255)]
     private ?string $intitule = null;
 
     #[ORM\Column(length: 255)]

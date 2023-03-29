@@ -1,0 +1,11 @@
+{% set selectedEntrepriseId = entreprise.id ?? null %}
+<div class="overflow-y-scroll h-full flex flex-col gap-y-2">
+    {# ajouter boutons ajouter, modifier, supprimer #}
+    {{ include("_buttons/addButton.html.twig", {route : 'entreprises_add'}) }}
+    <p>Liste des entreprises :</p>
+    {% for entreprise in entreprises %} {# ajouter index isSelected avec association de l'id pour changer la variation de la classe en cas d'appartition de form pour edit #}
+        <a class="{{selectedEntrepriseId is same as(entreprise.id) ? "bg-gray-600 text-white"}}" href="{{path('app_entreprises_detail', {id:entreprise.id})}}">{{ entreprise.nom }} {{ entreprise.email }}</a>
+    {% else %}
+        <p>Aucune enteprises</p>
+    {% endfor %}
+</div>
