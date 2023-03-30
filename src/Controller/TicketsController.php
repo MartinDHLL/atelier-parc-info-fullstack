@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Ticket;
 use App\Form\TicketType;
+use App\Repository\TicketActionRepository;
 use App\Repository\TicketRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -21,7 +23,21 @@ class TicketsController extends AbstractController
 
         return $this->render('_models/modelC.html.twig', [ // Modele B qui contient 2 emplacements de widget
             'title' => 'Tickets',
-            'widgetA' => 'test', // nom du widget A dans le dossier template '_widgets'
+            'widgetA' => 'ticket/show', // nom du widget A dans le dossier template '_widgets'
+            'tickets' => $tickets
+        ]);
+    }
+
+    #[Route('/detail/{id}', name: '_detail')]
+    public function detail(Ticket $ticket, TicketRepository $ticketRepo, TicketActionRepository $ticketActionRepo): Response
+    {
+        $tickets = $ticketRepo->findAll();
+
+        return $this->render('_models/modelB.html.twig', [
+            'title' => 'Tickets',
+            'widgetA' => 'ticket/show',
+            'widgetB' => 'ticket/detail',
+            'ticket' => $ticket,
             'tickets' => $tickets
         ]);
     }
@@ -30,10 +46,11 @@ class TicketsController extends AbstractController
     public function add(TicketRepository $ticketRepo, Request $request): Response
     {
         $tickets = $ticketRepo->findAll();
-        $form = $this->createForm(TicketType::class)->handleRequest($request);
+        $form = $this->createForm(TicketType::class, null, options:["action" => "add"])->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()) {
             $ticket = $form->getData();
             $ticketRepo->save($ticket, true);
+            return $this->redirectToRoute('app_tickets');
         }
 
         return $this->render('_models/modelB.html.twig', [ // Modele B qui contient 2 emplacements de widget
@@ -43,5 +60,32 @@ class TicketsController extends AbstractController
             'tickets' => $tickets,
             'form' => $form
         ]);
+    }
+
+    #[Route('/edit/{id}', name: '_edit')]
+    public function edit(Ticket $ticket, TicketRepository $ticketRepo, Request $request): Response
+    {
+        $tickets = $ticketRepo->findAll();
+        $form = $this->createForm(TicketType::class,  $ticket, options:["action" => "edit"])->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid()) {
+            $tickets = $form->getData();
+            $ticketRepo->save($tickets, true);
+            return $this->redirectToRoute('app_tickets');
+        }
+
+        return $this->render('_models/modelB.html.twig', [ 
+            'title' => 'Tickets',
+            'widgetA' => 'ticket/show', 
+            'widgetB' => 'form', 
+            'tickets' => $tickets,
+            'form' => $form
+        ]);
+    }
+
+    #[Route('/remove/{id}', name: '_remove')]
+    public function remove(Ticket $ticket, TicketRepository $ticketRepo): Response
+    {
+        $ticketRepo->remove($ticket, true);
+        return $this->redirectToRoute('app_tickets');
     }
 }

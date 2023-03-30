@@ -38,11 +38,12 @@ class TicketAction
     private ?User $user = null;
 
     #[ORM\ManyToOne(inversedBy: 'ticketActions')]
-    private ?Issue $issues = null;
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Statut $statut = null;
 
     #[ORM\ManyToOne(inversedBy: 'ticketActions')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?Statut $statut = null;
+    private ?Issue $issue = null;
 
     public function getId(): ?int
     {
@@ -145,19 +146,7 @@ class TicketAction
         return $this;
     }
 
-    public function getIssues(): ?Issue
-    {
-        return $this->issues;
-    }
-
-    public function setIssues(?Issue $issues): self
-    {
-        $this->issues = $issues;
-
-        return $this;
-    }
-
-    public function getStatut(): ?Statut
+        public function getStatut(): ?Statut
     {
         return $this->statut;
     }
@@ -168,4 +157,22 @@ class TicketAction
 
         return $this;
     }
+
+    public function __toString(): string
+    {
+        return $this->intitule;
+    }
+
+    public function getIssue(): ?Issue
+    {
+        return $this->issue;
+    }
+
+    public function setIssue(?Issue $issue): self
+    {
+        $this->issue = $issue;
+
+        return $this;
+    }
+
 }

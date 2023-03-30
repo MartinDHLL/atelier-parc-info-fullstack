@@ -21,16 +21,16 @@ class Issue
     #[ORM\Column(length: 255)]
     private ?string $description = null;
 
-    #[ORM\OneToMany(mappedBy: 'issues', targetEntity: TicketAction::class)]
-    private Collection $ticketActions;
-
     #[ORM\OneToMany(mappedBy: 'issue', targetEntity: Solution::class)]
     private Collection $solutions;
 
+    #[ORM\OneToMany(mappedBy: 'issue', targetEntity: TicketAction::class)]
+    private Collection $ticketActions;
+
     public function __construct()
     {
-        $this->ticketActions = new ArrayCollection();
         $this->solutions = new ArrayCollection();
+        $this->ticketActions = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -58,36 +58,6 @@ class Issue
     public function setDescription(string $description): self
     {
         $this->description = strtolower($description);
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, TicketAction>
-     */
-    public function getTicketActions(): Collection
-    {
-        return $this->ticketActions;
-    }
-
-    public function addTicketAction(TicketAction $ticketAction): self
-    {
-        if (!$this->ticketActions->contains($ticketAction)) {
-            $this->ticketActions->add($ticketAction);
-            $ticketAction->setIssues($this);
-        }
-
-        return $this;
-    }
-
-    public function removeTicketAction(TicketAction $ticketAction): self
-    {
-        if ($this->ticketActions->removeElement($ticketAction)) {
-            // set the owning side to null (unless already changed)
-            if ($ticketAction->getIssues() === $this) {
-                $ticketAction->setIssues(null);
-            }
-        }
 
         return $this;
     }
@@ -121,4 +91,40 @@ class Issue
 
         return $this;
     }
+
+    public function __toString(): string
+    {
+        return $this -> intitule;
+    }
+
+    /**
+     * @return Collection<int, TicketAction>
+     */
+    public function getTicketActions(): Collection
+    {
+        return $this->ticketActions;
+    }
+
+    public function addTicketAction(TicketAction $ticketAction): self
+    {
+        if (!$this->ticketActions->contains($ticketAction)) {
+            $this->ticketActions->add($ticketAction);
+            $ticketAction->setIssue($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTicketAction(TicketAction $ticketAction): self
+    {
+        if ($this->ticketActions->removeElement($ticketAction)) {
+            // set the owning side to null (unless already changed)
+            if ($ticketAction->getIssue() === $this) {
+                $ticketAction->setIssue(null);
+            }
+        }
+
+        return $this;
+    }
+
 }

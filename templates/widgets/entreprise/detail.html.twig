@@ -16,6 +16,6 @@
     {% for hardware in entreprise.hardwares %}
     <a class="text-black" href="{{path("app_hardwares_detail", {id:hardware.id})}}">{{ hardware.libelle }} - {{ hardware.type }}</a>
     {% else %}
-    <p class="text-black">Aucun tickets</p>
+    <p class="text-black">Aucun Entreprises</p>
     {% endfor %}
 </div>

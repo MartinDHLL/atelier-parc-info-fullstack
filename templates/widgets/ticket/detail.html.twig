@@ -1,0 +1,23 @@
+{% set selectedTicketId = action.id ?? null %}
+<div class="overflow-y-scroll h-full flex flex-col gap-y-2 items-center text-gray-600">
+    <p>Détails de <span class="text-black">{{ticket.number}}</span> :</p>
+    <p>ID : <span class="text-black">{{ticket.id}}</span></p>
+    <p>Intitule : <span class="text-black">{{ticket.intitule}}</span></p>
+    <p>Description : <span class="text-black">{{ticket.description}}</span></p>
+    <div class="flex flex-row justify-center gap-x-6">
+        <a href="{{path("app_tickets_edit", { id:ticket.id })}}"><img class="h-10" src="{{asset("build/images/edit.svg")}}" alt="edit icon"></a>
+        <a href="{{path("app_tickets_remove", { id:ticket.id })}}"><img class="h-10" src="{{asset("build/images/delete-user.svg")}}" alt="delete icon"></a>
+    </div>
+    <hr class="w-full ">
+    <p>Sous-Tickets associés :</p>
+    {% for action in ticket.actions %}
+    <a class="text-black" href="{{path("app_ticket_action_detail", {id:action.id})}}">{{action.intitule}} - {{action.statut}}</a>
+    <a href="{{path("app_ticket_action_add", {id:ticket.id})}}">Ajouter une action</a>
+    <a class="p-2 {{selectedTicketId is same as(action.id) ? "bg-gray-600 text-white"}}" href="{{path("app_ticket_action_add", {id:action.id})}}">Modifier l'action</a>
+    <a class="p-2 {{selectedTicketId is same as(action.id) ? "bg-gray-600 text-white"}}" href="{{path("app_ticket_action_remove", {id:action.id})}}">Supprimer l'action</a>
+
+    {% else %}
+    <a href="{{path("app_ticket_action_add", {id:ticket.id})}}">Ajouter une action</a>
+    <p class="text-black">Aucun sous-tickets</p>
+    {% endfor %}
+</div>
