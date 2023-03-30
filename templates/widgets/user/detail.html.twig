@@ -1,0 +1,18 @@
+<div class="overflow-y-scroll h-full flex flex-col gap-y-2 items-center text-gray-600">
+    <p>Détails de <span class="text-black">{{user.name|capitalize}}</span> :</p>
+    <p>Email : <span class="text-black">{{user.email}}</span></p>
+    <p>Nom : <span class="text-black">{{user.name|capitalize}}</span></p>
+    {% if is_granted("ROLE_ADMIN") %}    
+    <div class="flex flex-row justify-center gap-x-6">
+        <a href="{{path("app_users_edit", { id:user.id })}}"><img class="h-10" src="{{asset("build/images/edit.svg")}}" alt="delete icon"></a>
+        <a href="{{path("app_users_remove", { id:user.id })}}"><img class="h-10" src="{{asset("build/images/delete-user.svg")}}" alt="delete icon"></a>
+    </div>
+    {% endif %}
+    <hr class="w-full ">
+    <p>sous-tickets associés :</p>
+    {% for ticket in user.ticketActions %}
+    <a class="text-black" href="{{path("app_hardwares_detail", {id:hardware.id})}}">{{ hardware.libelle }} - {{ hardware.type }}</a>
+    {% else %}
+    <p class="text-black">Aucun sous-tickets</p>
+    {% endfor %}
+</div>

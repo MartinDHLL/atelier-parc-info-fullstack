@@ -26,6 +26,7 @@ class EntrepriseController extends AbstractController
         ]);
     }
 
+    #[IsGranted("ROLE_ADMIN")]
     #[Route('/add', name: '_add')]
     public function add(EntrepriseRepository $entrepriseRepo, Request $request): Response
     {
@@ -46,13 +47,13 @@ class EntrepriseController extends AbstractController
         ]);
     }
 
+    #[IsGranted("ROLE_ADMIN")]
     #[Route('/edit/{id}', name: '_edit')]
-    public function edit(Entreprise $entreprise, EntrepriseRepository $entrepriseRepo, Request $request): Response
+    public function edit(Entreprise $entreprise, EntrepriseRepository $entrepriseRepo): Response
     {
         $entreprises = $entrepriseRepo->findAll();
-        $form = $this->createForm(EntrepriseType::class, $entreprise, options:["action" => "edit"])->handleRequest($request);
+        $form = $this->createForm(EntrepriseType::class, $entreprise, options:["action" => "edit"]);
         if($form->isSubmitted() && $form->isValid()) {
-            $entreprise = $form->getData();
             $entrepriseRepo->save($entreprise, true);
             return $this->redirectToRoute('app_entreprises');
         }
@@ -62,6 +63,7 @@ class EntrepriseController extends AbstractController
             'widgetA' => 'entreprise/show', // nom du widget A dans le dossier template '_widgets'
             'widgetB' => 'form', // nom du widget B dans le dossier template '_widgets'
             'entreprises' => $entreprises,
+            'entreprise' => $entreprise,
             'form' => $form
         ]);
     }
@@ -80,6 +82,7 @@ class EntrepriseController extends AbstractController
         ]);
     }
 
+    #[IsGranted("ROLE_ADMIN")]
     #[Route('/remove/{id}', name: '_remove')]
     public function remove(Entreprise $entreprise, EntrepriseRepository $entrepriseRepo): Response
     {

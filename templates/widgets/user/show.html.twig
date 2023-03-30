@@ -1,0 +1,13 @@
+{% set selectedUserId = user.id ?? null %}
+<div class="overflow-y-scroll h-full flex flex-col gap-y-2">
+    {# ajouter boutons ajouter, modifier, supprimer #}
+    {{ include("_buttons/addButton.html.twig", {route : 'users_add'}) }}
+    <p class="text-blue-900">Liste des users :</p>
+    <hr>
+    {% for user in users %} {# ajouter index isSelected avec association de l'id pour changer la variation de la classe en cas d'appartition de form pour edit #}
+        <a class="{{selectedUserId is same as(user.id) ? "bg-gray-600 text-white"}}" href="{{path('app_users_detail', {id:user.id})}}">{{ user.name|capitalize }} {{ user.email }}</a>
+        <hr>
+    {% else %}
+        <p>Aucun users</p>
+    {% endfor %}
+</div>

@@ -2,10 +2,10 @@
 
 namespace App\Controller;
 
-use App\Entity\Ticket;
 use App\Entity\TicketAction;
 use App\Form\TicketActionType;
 use App\Repository\TicketActionRepository;
+use App\Repository\TicketRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -18,36 +18,35 @@ class TicketActionController extends AbstractController
 {
     
     #[Route('/detail/{id}', name: '_detail')]
-    public function detail(/* TicketAction $ticketAction */TicketActionRepository $ticketActRepo): Response
+    public function detail(TicketAction $ticketAction, Request $request, TicketRepository $ticketRepo): Response
     {
-        $ticketActShow = $ticketActRepo->findAll();
-
+        $ticket = $ticketRepo->find($request->get('ticket'));
         return $this->render('_models/modelB.html.twig', [
             'title' => 'Action',
-            'widgetA' => 'ticket_action/show',
-            'widgetB' => 'ticket_action/detail',/* 
-            'action' => $ticketAction, */
-            'actions' => $ticketActShow
+            'widgetA' => 'ticket/detail',
+            'widgetB' => 'ticket_action/detail',
+            'ticket' => $ticket,
+            'action' => $ticketAction
         ]);
     }
 
     #[Route('/add', name: '_add')]
-    public function add(TicketActionRepository $ticketActRepo, Request $request): Response
+    public function add(TicketActionRepository $ticketActRepo, TicketRepository $ticketRepo, Request $request): Response
     {
-        $ticketActShow = $ticketActRepo->findAll();
-        $form = $this->createForm(TicketActionType::class, null, options:["action" => "add"])->handleRequest($request);
+        $ticket = $ticketRepo->find($request->get('id'));
+        $form = $this->createForm(TicketActionType::class, options:["action" => "add"])->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()) {
             $ticketAction = $form->getData();
             $ticketActRepo->save($ticketAction, true);
-            return $this->redirectToRoute('app_ticket');
+            return $this->redirectToRoute('app_tickets');
         }
 
         return $this->render('_models/modelB.html.twig', [
             'title' => 'Tickets',
-            'widgetA' => 'ticket/show', 
-            'widgetB' => 'form', 
-            'tickets' => $ticketActShow,
-            'form' => $form
+            'widgetA' => 'ticket/detail', 
+            'widgetB' => 'form',
+            'form' => $form,
+            'ticket' => $ticket
         ]);
     }
 

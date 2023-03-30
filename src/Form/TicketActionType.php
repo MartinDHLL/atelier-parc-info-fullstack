@@ -7,6 +7,8 @@ use App\Entity\Issue;
 use App\Entity\Statut;
 use App\Entity\Ticket;
 use App\Entity\TicketAction;
+use DateTime;
+use DateTimeImmutable;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -48,9 +50,11 @@ class TicketActionType extends AbstractType
             ])
             ->add('createdAt' ,  DateTimeType::class, [
                 'input' => 'datetime_immutable',
+                'data' => new DateTimeImmutable('now')
             ])
             ->add('updatedAt' ,  DateTimeType::class, [
                 'input' => 'datetime_immutable',
+                'data' => new DateTimeImmutable('now')
             ])
             ->add('ticket' , EntityType::class, ['class' => Ticket::class,
             

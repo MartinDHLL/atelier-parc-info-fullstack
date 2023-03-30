@@ -7,10 +7,11 @@
   "build/images/person.png": "/build/images/person.72806cc5.png",
   "build/images/entreprise.svg": "/build/images/entreprise.6ce1d04d.svg",
   "build/images/hardware.svg": "/build/images/hardware.af2c01db.svg",
+  "build/images/edit.svg": "/build/images/edit.eb7bc5aa.svg",
+  "build/images/users.svg": "/build/images/users.a92c6dec.svg",
+  "build/images/delete-item.svg": "/build/images/delete-item.940f2754.svg",
   "build/images/ticket.svg": "/build/images/ticket.2378d07f.svg",
   "build/images/delete-user.svg": "/build/images/delete-user.fad86dd9.svg",
   "build/images/profile.svg": "/build/images/profile.25c7a2c4.svg",
-  "build/images/table.svg": "/build/images/table.208fa64e.svg",
-  "build/images/delete-item.svg": "/build/images/delete-item.940f2754.svg",
-  "build/images/edit.svg": "/build/images/edit.eb7bc5aa.svg"
+  "build/images/table.svg": "/build/images/table.208fa64e.svg"
 }

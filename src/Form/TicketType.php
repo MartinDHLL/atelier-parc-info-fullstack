@@ -9,7 +9,6 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
@@ -22,12 +21,6 @@ class TicketType extends AbstractType
         $builder
             ->add('intitule', TextType::class, [
             'attr' => 
-                [
-                    'class' => 'm-1 text-black p-1 border-2'
-                ]
-            ])
-            ->add('intitule', TextType::class, [
-                'attr' => 
                 [
                     'class' => 'm-1 text-black p-1 border-2'
                 ]

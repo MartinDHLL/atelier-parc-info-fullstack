@@ -2,7 +2,6 @@
 
 <div class="overflow-y-scroll h-full flex flex-col gap-y-2">
     {# ajouter boutons ajouter, modifier, supprimer #}
-    {{ include("_buttons/addButton.html.twig", {route: 'tickets_add'}) }}
     <p class="text-blue-900">Liste des tickets :</p>
     <hr>
     {% for ticket in tickets %} {# ajouter index isSelected avec association de l'id pour changer la variation de la classe en cas d'appartition de form pour edit #}
@@ -12,8 +11,6 @@
         <a class="p-2">{{ ticket.intitule }}</a>
         <a class="p-2">{{ ticket.description }}</a>
         <a class="p-2">{{ ticket.Hardware }}</a>
-
-        <a class="p-2 {{selectedTicketId is same as(ticket.id) ? "bg-gray-600 text-white"}}" href="{{path('app_tickets_remove', {id:ticket.id})}}">Supprimer</a>
 
         <a class="p-2 {{selectedTicketId is same as(ticket.id) ? "bg-gray-600 text-white"}}" href="{{path('app_tickets_edit', {id:ticket.id})}}">Modifier</a>
 

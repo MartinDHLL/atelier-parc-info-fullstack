@@ -65,6 +65,7 @@ class HardwaresController extends AbstractController
             'widgetA' => 'hardware/show', // nom du widget A dans le dossier template '_widgets'
             'widgetB' => 'form', // nom du widget B dans le dossier template '_widgets'
             'hardwares' => $hardwares,
+            'hardware' => $hardware,
             'form' => $form
         ]);
     }

@@ -10,7 +10,10 @@
     <hr class="w-full ">
     <p>Tickets associés :</p>
     {% for ticket in hardware.tickets %}
-    {# <a href="{{path("app_ticket", { id:ticket.id })}}">{{ticket.id}}</a> #}
+    {% for action in ticket.actions %}{% set statut = action.statut %}
+    {% else %}{% set statut = "aucun statuts" %}
+    {% endfor %}
+    <a href="{{path("app_tickets", { id:ticket.id })}}">{{ticket.intitule}} - {{statut ?? "aucun statuts"}} </a>
     {% else %}
     <p class="text-black">Aucun tickets</p>
     {% endfor %}        

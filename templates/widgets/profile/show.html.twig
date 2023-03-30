@@ -1,3 +1,16 @@
-<div class="overflow-y-scroll h-full">
-    {# put here all informations about the "technician" or the "responsable" #}
-</div>
+<div class="h-full flex flex-col items-center">
+    <div class="items-center">
+        {% if app.user %}
+        <div class="flex items-center text-gray-600">
+            <img class="object-cover h-11 border-blue-700" src="{{asset("build/images/person.png")}}" alt="techLogo">
+            <div class="h-full flex flex-col gap-y-2 items-center text-gray-600">
+                <p>Profile de <span class="text-black">{{app.user.name}}</span></p>
+                <p>nom : <span class="text-black">{{app.user.name}}</span></p>
+                <p>email : <span class="text-black">{{app.user.email}}</span></p>
+                <p>Role : <span class="text-black">{{app.user.name}}</span></p>
+                <a href="{{path("app_profile_edit")}}" class="text-green-600">Éditer le profil</a>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div> 

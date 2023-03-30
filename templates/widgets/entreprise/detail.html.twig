@@ -7,10 +7,12 @@
     <p>Code Postal : <span class="text-black">{{entreprise.codePostal}}</span></p>
     <p>Ville : <span class="text-black">{{entreprise.ville|capitalize}}</span></p>
     <p>Téléphone : <span class="text-black">{{entreprise.telephone}}</span></p>
+    {% if is_granted("ROLE_ADMIN") %}    
     <div class="flex flex-row justify-center gap-x-6">
         <a href="{{path("app_entreprises_edit", { id:entreprise.id })}}"><img class="h-10" src="{{asset("build/images/edit.svg")}}" alt="delete icon"></a>
         <a href="{{path("app_entreprises_remove", { id:entreprise.id })}}"><img class="h-10" src="{{asset("build/images/delete-user.svg")}}" alt="delete icon"></a>
     </div>
+    {% endif %}
     <hr class="w-full ">
     <p>Matériels associés :</p>
     {% for hardware in entreprise.hardwares %}

@@ -8,9 +8,9 @@
   </head>
 
   <body class="h-screen w-full">
-    {% if app.user %}
     {% include("_partials/header.html.twig") %} 
     <main class="flex flex-col h-[90%] w-full p-2">
+      {% if app.user %}
       <section class="flex justify-start w-full gap-x-1">
         {# Dashboard button #}
         {{include("_buttons/menuButton.html.twig", {buttonTitle: "Dashboard", route: "home", imgSrc: "table"})}}
@@ -20,16 +20,16 @@
         {{include("_buttons/menuButton.html.twig", {buttonTitle: "Entreprises", route: "entreprises", imgSrc: "entreprise"})}}
         {# Hardwares button #}
         {{include("_buttons/menuButton.html.twig", {buttonTitle: "Matériel", route: "hardwares", imgSrc: "hardware"})}}
+        {# Users button #}
+        {{ is_granted("ROLE_ADMIN") ? include("_buttons/menuButton.html.twig", {buttonTitle: "Gestion Techniciens", route: "users", imgSrc: "users"})}}
         {# Profile button #}
         {{include("_buttons/menuButton.html.twig", {buttonTitle: "Profil", route: "profile", imgSrc: "profile"})}}
       </section>
+      {% endif %}
       <section class="bg-indigo-100 flex h-[95%] w-full p-2 border-2 border-blue-900">
         {# app core location [model A, model B or model C] #}
         {% block app %}{% endblock %}
       </section>
     </main>
-    {% else %} 
-    {% block body %}{% endblock %} 
-    {% endif %}
   </body>
 </html>

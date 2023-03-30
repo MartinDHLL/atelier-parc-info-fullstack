@@ -90,6 +90,6 @@ class Statut
 
     public function __toString(): string
     {
-        return $this -> code;
+        return $this->type;
     }
 }
