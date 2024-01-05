@@ -43,6 +43,7 @@ class TicketActionController extends AbstractController
 
         return $this->render('_models/modelB.html.twig', [
             'title' => 'Tickets',
+            'form_title' => "Ajout d'un ticket",
             'widgetA' => 'ticket/detail', 
             'widgetB' => 'form',
             'form' => $form,
@@ -63,6 +64,7 @@ class TicketActionController extends AbstractController
 
         return $this->render('_models/modelB.html.twig', [ 
             'title' => 'Tickets',
+            'form_title' => "Modification des informations d'un ticket",
             'widgetA' => 'ticket/show', 
             'widgetB' => 'form', 
             'tickets' => $ticketActShow,

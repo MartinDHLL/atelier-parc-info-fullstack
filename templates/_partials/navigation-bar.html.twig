@@ -1,0 +1,14 @@
+<nav class="flex justify-start w-full gap-x-1">
+    {# Dashboard button #}
+    {{include("_buttons/menu-button.html.twig", {buttonTitle: "Dashboard", route: "home", imgSrc: "table"})}}
+    {# Tickets button #}
+    {{include("_buttons/menu-button.html.twig", {buttonTitle: "Tickets", route: "tickets", imgSrc: "ticket"})}}
+    {# Entreprises button #}
+    {{include("_buttons/menu-button.html.twig", {buttonTitle: "Entreprises", route: "entreprises", imgSrc: "entreprise"})}}
+    {# Hardwares button #}
+    {{include("_buttons/menu-button.html.twig", {buttonTitle: "Matériel", route: "hardwares", imgSrc: "hardware"})}}
+    {# Users button #}
+    {{ is_granted("ROLE_ADMIN") ? include("_buttons/menu-button.html.twig", {buttonTitle: "Gestion Techniciens", route: "users", imgSrc: "users"})}}
+    {# Profile button #}
+    {{include("_buttons/menu-button.html.twig", {buttonTitle: "Profil", route: "profile", imgSrc: "profile"})}}
+</nav>

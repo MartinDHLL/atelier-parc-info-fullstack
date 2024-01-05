@@ -40,6 +40,7 @@ class ProfileController extends AbstractController
 
         return $this->render('_models/modelB.html.twig', [
             'title' => 'Profil',
+            'form_title' => "Modification des informations de mon profil",
             'widgetA' => 'profile/show',
             'widgetB' => 'form',
             'form' => $form

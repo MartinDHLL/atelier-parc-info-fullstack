@@ -16,19 +16,19 @@ class UserType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('email', EmailType::class, ['label' => 'email', 'attr' => ['class' => 'm-1 text-black p-1 border-2 rounded-xl']])
-            ->add('name', TextType::class, ['label' => 'nom', 'attr' => ['class' => 'm-1 text-black p-1 border-2 rounded-xl']]);
+            ->add('email', EmailType::class, ['label' => 'email'])
+            ->add('name', TextType::class, ['label' => 'nom']);
             if(!$options['type']) {
                 $builder
-                ->add('password', PasswordType::class, ['label' => 'mot de passe', 'attr' => ['class' => 'm-1 text-black p-1 border-2 rounded-xl']])
-                ->add('secret-verification', PasswordType::class, ['label' => 'phrase secrète', 'attr' => ['class' => 'm-1 text-black p-1 border-2 rounded-xl']]);
+                ->add('password', PasswordType::class, ['label' => 'mot de passe'])
+                ->add('secret-verification', PasswordType::class, ['label' => 'phrase secrète']);
             }
             if($options['type'] === 'add') {
                 $builder
-                ->add('password', PasswordType::class, ['label' => 'mot de passe', 'attr' => ['class' => 'm-1 text-black p-1 border-2 rounded-xl']]);
+                ->add('password', PasswordType::class, ['label' => 'mot de passe']);
             }
         $builder
-            ->add('submit', SubmitType::class, $options['type'] === "edit" ? ['label' => 'Modifier'] : ['label' => 'Créer'] );
+            ->add('submit', SubmitType::class, ['label' => $options['type'] === "edit" ? 'Modifier' : "Créer"]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

@@ -2,13 +2,13 @@
 
 {% block app %}
 
-<div class="w-[40%] h-[99%] flex flex-col">
-  <div class="h-[50%] border-blue-900 border-2 rounded-xl m-1 shadow-lg p-1 bg-white">
+<div class="w-[40%] h-full flex flex-col">
+  <div class="h-full border-blue-900 border-2 rounded-xl m-1 shadow-lg p-1 bg-white">
     {% if widgetA %}
       {{ include('widgets/' ~ widgetA ~ '.html.twig') }}
     {% endif %}
   </div>
-  <div class="h-[45%] w-[80%] border-blue-900 border-2 rounded-xl m-1 p-1 bg-white">
+  <div class="h-full border-blue-900 border-2 rounded-xl m-1 p-1 bg-white">
     {% if widgetB %}
       {{ include('widgets/' ~ widgetB ~ '.html.twig') }}
     {% endif %}

@@ -1,3 +1,24 @@
-<div class="flex flex-col justify-center items-center overflow-y-scroll h-full">
-    {{ form(form, { 'attr': {'class': 'flex flex-col gap-y-4 items-center'} }) }}
+<div class="flex flex-col justify-center items-center overflow-y-scroll gap-5 h-full">
+{% if (form_title ?? null) %}
+    <p>{{form_title}}</p>
+{% endif %}
+{{ form_start(form, {'attr': {'class':'flex flex-col gap-y-4 items-center'} }) }}
+
+{{ form_errors(form) }}
+{% for row in form.children %}
+    <div class="flex w-full justify-between gap-5 items-center">
+        {% if row.vars.name == '_token' %}
+            {{ form_row(row) }}
+        {% elseif row.vars.name == 'submit' %}
+            <span></span>
+            {{ form_row(row, {'attr': {'class':'order-2 rounded-2xl bg-blue-200 hover:bg-blue-800 hover:text-white p-2'} }) }}
+        {% else %}
+            {{ form_label(row) }}
+            {{ form_widget(row, { 'attr': {'class':'text-black px-2 py-1 border-2 rounded-xl'} }) }}
+        {% endif %}
+    </div>
+{% endfor %}
+
+{{ form_end(form) }}
 </div>
+

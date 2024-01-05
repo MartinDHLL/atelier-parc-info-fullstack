@@ -54,6 +54,7 @@ class TicketsController extends AbstractController
 
         return $this->render('_models/modelB.html.twig', [ 
             'title' => 'Tickets',
+            'form_title' => "Ajout d'un ticket",
             'widgetA' => 'ticket/show', 
             'widgetB' => 'form', 
             'tickets' => $tickets,

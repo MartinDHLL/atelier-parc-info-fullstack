@@ -79,7 +79,7 @@ class SecurityController extends AbstractController
         }
 
         return $this->render('_models/modelC.html.twig', [ // Modele B qui contient 2 emplacements de widget
-            'title' => 'Création Responsable',
+            'form_title' => "Création d'un responsable",
             'widgetA' => 'form', // nom du widget A dans le dossier template '_widgets'
             'form' => $form
         ]);

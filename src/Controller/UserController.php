@@ -47,6 +47,7 @@ class UserController extends AbstractController
 
         return $this->render('_models/modelB.html.twig', [ // Modele B qui contient 2 emplacements de widget
             'title' => 'Gestion Techniciens',
+            'form_title' => "Ajout d'un technicien",
             'widgetA' => 'user/show', // nom du widget A dans le dossier template '_widgets'
             'widgetB' => 'form', // nom du widget B dans le dossier template '_widgets'
             'users' => $users,
@@ -67,6 +68,7 @@ class UserController extends AbstractController
 
         return $this->render('_models/modelB.html.twig', [ // Modele B qui contient 2 emplacements de widget
             'title' => 'Gestion Techniciens',
+            'form_title' => "Modification des informations d'un technicien",
             'widgetA' => 'user/show', // nom du widget A dans le dossier template '_widgets'
             'widgetB' => 'form', // nom du widget B dans le dossier template '_widgets'
             'users' => $users,

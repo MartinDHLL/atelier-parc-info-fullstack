@@ -1,9 +1,9 @@
 <a href="{{path("app_"~route)}}">
     <span
       class="{{
-        (title ?? null) is same as(buttonTitle) ? "bg-blue-200" 
+        (title ?? null) is same as(buttonTitle) ? "bg-blue-500 text-white" 
         : "bg-indigo-100"}} 
-        p-1 flex rounded-tr-lg rounded-tl-lg border-[1px] border-blue-800 hover:bg-blue-300">
+        p-1 flex items-center rounded-tr-lg rounded-tl-lg border-[1px] border-blue-800 hover:bg-blue-300">
       <img
         src="{{ asset('build/images/'~ imgSrc ~'.svg') }}"
         alt="logo"

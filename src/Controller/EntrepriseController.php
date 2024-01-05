@@ -40,6 +40,7 @@ class EntrepriseController extends AbstractController
 
         return $this->render('_models/modelB.html.twig', [ // Modele B qui contient 2 emplacements de widget
             'title' => 'Entreprises',
+            'form_title' => "Création d'une entreprise",
             'widgetA' => 'entreprise/show', // nom du widget A dans le dossier template '_widgets'
             'widgetB' => 'form', // nom du widget B dans le dossier template '_widgets'
             'entreprises' => $entreprises,
@@ -61,6 +62,7 @@ class EntrepriseController extends AbstractController
 
         return $this->render('_models/modelB.html.twig', [ // Modele B qui contient 2 emplacements de widget
             'title' => 'Entreprises',
+            'form_title' => "Modification des informations d'une entreprise",
             'widgetA' => 'entreprise/show', // nom du widget A dans le dossier template '_widgets'
             'widgetB' => 'form', // nom du widget B dans le dossier template '_widgets'
             'entreprises' => $entreprises,
