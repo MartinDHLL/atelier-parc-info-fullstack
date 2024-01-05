@@ -33,6 +33,11 @@ class SecurityController extends AbstractController
         $lastUsername = $authenticationUtils->getLastUsername();
 
         return $this->render('security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
+        /* return $this->render('_models/modelC.html.twig', [ // Modele C qui contient 1 emplacements de widget
+            'form_title' => "Connexion",
+            'widgetA' => 'form', // nom du widget A dans le dossier template '_widgets'
+            'form' => $form
+        ]); */
     }
 
     #[Route(path: '/logout', name: 'app_logout')]
@@ -78,7 +83,7 @@ class SecurityController extends AbstractController
             return new JsonResponse(['erreur' => 'non autorisé']);
         }
 
-        return $this->render('_models/modelC.html.twig', [ // Modele B qui contient 2 emplacements de widget
+        return $this->render('_models/modelC.html.twig', [ // Modele C qui contient 1 emplacements de widget
             'form_title' => "Création d'un responsable",
             'widgetA' => 'form', // nom du widget A dans le dossier template '_widgets'
             'form' => $form
