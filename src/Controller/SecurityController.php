@@ -56,8 +56,9 @@ class SecurityController extends AbstractController
             {
                 return $this->redirectToRoute('app_login');
             }
+
             $secretInput = $form->get('secret-verification')->getData();
-            
+    
             if($secretInput === $_ENV['APP_CONFIG_SECRET']) 
             {
                 try {

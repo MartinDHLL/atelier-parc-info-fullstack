@@ -16,16 +16,16 @@ class UserType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('email', EmailType::class, ['label' => 'email', 'attr' => ['class' => 'm-1 text-black p-1 border-2']])
-            ->add('name', TextType::class, ['label' => 'nom', 'attr' => ['class' => 'm-1 text-black p-1 border-2']]);
+            ->add('email', EmailType::class, ['label' => 'email', 'attr' => ['class' => 'm-1 text-black p-1 border-2 rounded-xl']])
+            ->add('name', TextType::class, ['label' => 'nom', 'attr' => ['class' => 'm-1 text-black p-1 border-2 rounded-xl']]);
             if(!$options['type']) {
                 $builder
-                ->add('password', PasswordType::class, ['label' => 'mot de passe', 'attr' => ['class' => 'm-1 text-black p-1 border-2']])
-                ->add('secret-verification', PasswordType::class, ['label' => 'phrase secrète', 'attr' => ['class' => 'm-1 text-black p-1 border-2']]);
+                ->add('password', PasswordType::class, ['label' => 'mot de passe', 'attr' => ['class' => 'm-1 text-black p-1 border-2 rounded-xl']])
+                ->add('secret-verification', PasswordType::class, ['label' => 'phrase secrète', 'attr' => ['class' => 'm-1 text-black p-1 border-2 rounded-xl']]);
             }
             if($options['type'] === 'add') {
                 $builder
-                ->add('password', PasswordType::class, ['label' => 'mot de passe', 'attr' => ['class' => 'm-1 text-black p-1 border-2']]);
+                ->add('password', PasswordType::class, ['label' => 'mot de passe', 'attr' => ['class' => 'm-1 text-black p-1 border-2 rounded-xl']]);
             }
         $builder
             ->add('submit', SubmitType::class, $options['type'] === "edit" ? ['label' => 'Modifier'] : ['label' => 'Créer'] );
