@@ -31,7 +31,7 @@ class EntrepriseController extends AbstractController
     public function add(EntrepriseRepository $entrepriseRepo, Request $request): Response
     {
         $entreprises = $entrepriseRepo->findAll();
-        $form = $this->createForm(EntrepriseType::class, null, options:["action" => "add"])->handleRequest($request);
+        $form = $this->createForm(EntrepriseType::class, null, options:["type" => "add"])->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()) {
             $entreprise = $form->getData();
             $entrepriseRepo->save($entreprise, true);
@@ -49,10 +49,11 @@ class EntrepriseController extends AbstractController
 
     #[IsGranted("ROLE_ADMIN")]
     #[Route('/edit/{id}', name: '_edit')]
-    public function edit(Entreprise $entreprise, EntrepriseRepository $entrepriseRepo): Response
+    public function edit(Request $request, Entreprise $entreprise, EntrepriseRepository $entrepriseRepo): Response
     {
         $entreprises = $entrepriseRepo->findAll();
-        $form = $this->createForm(EntrepriseType::class, $entreprise, options:["action" => "edit"]);
+        $form = $this->createForm(EntrepriseType::class, $entreprise, options:["type" => "edit"])->handleRequest($request);
+
         if($form->isSubmitted() && $form->isValid()) {
             $entrepriseRepo->save($entreprise, true);
             return $this->redirectToRoute('app_entreprises');

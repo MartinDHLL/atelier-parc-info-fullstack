@@ -7,6 +7,7 @@ use App\Form\UserType;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
@@ -19,7 +20,7 @@ class SecurityController extends AbstractController
     {
         if (count($userRepo->findAllAdmins()) <= 0)
         {
-            return $this->redirectToRoute('app_makeadmin');
+            return $this->redirectToRoute('app_addAdmin');
         }
 
         if ($this->getUser()) {
@@ -40,23 +41,24 @@ class SecurityController extends AbstractController
         throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
     }
 
-    #[Route(path: '/makeAdmin', name: 'app_makeadmin')]
-    public function makeAdmin(UserRepository $userRepo, UserPasswordHasherInterface $hasher): Response
+    #[Route(path: '/addAdmin', name: 'app_addAdmin')]
+    public function makeAdmin(Request $request, UserRepository $userRepo, UserPasswordHasherInterface $hasher): Response
     {
         if (count($userRepo->findAll()) > 0)
         {
             return $this->redirectToRoute('app_login');
         }
 
-        $form = $this->createForm(UserType::class, options:['action' => 'addAdmin']);
+        $form = $this->createForm(UserType::class)->handleRequest($request);
         
-        if ($form->isSubmitted() && $form->isValid()) {
-            if (count($userRepo->findAll()) > 0)
+        if($form->isSubmitted() && $form->isValid()) {
+            if(count($userRepo->findAll()) > 0)
             {
                 return $this->redirectToRoute('app_login');
             }
             $secretInput = $form->get('secret-verification')->getData();
-            if($secretInput === $_ENV['APP_CONFIG_SECRET'])
+            
+            if($secretInput === $_ENV['APP_CONFIG_SECRET']) 
             {
                 try {
                 $admin = new User();
@@ -65,14 +67,16 @@ class SecurityController extends AbstractController
                     ->setName($form->get('name')->getData())
                     ->setEmail($form->get('email')->getData())
                     ->setRoles(['ROLE_TECH','ROLE_ADMIN']);
-                $userRepo->add($admin);
+                $userRepo->save($admin, true);
                 } catch (\Exception $e) {
-                    return new JsonResponse(['erreur' => $e->getMessage()]);
+                    dd($e->getMessage());
+                    return $this->redirectToRoute('app_login');
                 }
                 return $this->redirectToRoute('app_login');
             }
             return new JsonResponse(['erreur' => 'non autorisé']);
         }
+
         return $this->render('_models/modelC.html.twig', [ // Modele B qui contient 2 emplacements de widget
             'title' => 'Création Responsable',
             'widgetA' => 'form', // nom du widget A dans le dossier template '_widgets'

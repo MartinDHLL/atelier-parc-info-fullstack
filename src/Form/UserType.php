@@ -18,24 +18,24 @@ class UserType extends AbstractType
         $builder
             ->add('email', EmailType::class, ['label' => 'email', 'attr' => ['class' => 'm-1 text-black p-1 border-2']])
             ->add('name', TextType::class, ['label' => 'nom', 'attr' => ['class' => 'm-1 text-black p-1 border-2']]);
-            if($options['action'] === 'addAdmin') {
+            if(!$options['type']) {
                 $builder
                 ->add('password', PasswordType::class, ['label' => 'mot de passe', 'attr' => ['class' => 'm-1 text-black p-1 border-2']])
                 ->add('secret-verification', PasswordType::class, ['label' => 'phrase secrète', 'attr' => ['class' => 'm-1 text-black p-1 border-2']]);
             }
-            if($options['action'] === 'add') {
+            if($options['type'] === 'add') {
                 $builder
                 ->add('password', PasswordType::class, ['label' => 'mot de passe', 'attr' => ['class' => 'm-1 text-black p-1 border-2']]);
             }
         $builder
-            ->add('submit', SubmitType::class, $options['action'] === "addAdmin" || $options['action'] === "addAdmin" ? ['label' => 'Créer'] : ['label' => 'Modifier']);
+            ->add('submit', SubmitType::class, $options['type'] === "edit" ? ['label' => 'Modifier'] : ['label' => 'Créer'] );
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => User::class,
-            'action' => 'edit',
+            /* 'data_class' => User::class, */
+            'type' => null
         ]);
     }
 }

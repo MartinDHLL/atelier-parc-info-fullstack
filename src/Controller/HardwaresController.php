@@ -30,7 +30,7 @@ class HardwaresController extends AbstractController
     public function add(HardwareRepository $hardwareRepo, Request $request): Response
     {
         $hardwares = $hardwareRepo->findAll();
-        $form = $this->createForm(HardwareType::class, options:["action" => "add"])->handleRequest($request);
+        $form = $this->createForm(HardwareType::class, options:["type" => "add"])->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()) {
             $hardware = $form->getData();
             $hardwareRepo->save($hardware, true);
@@ -51,7 +51,7 @@ class HardwaresController extends AbstractController
     {
         $hardwares = $hardwareRepo->findAll();
         $form = $this
-            ->createForm(HardwareType::class, $hardware, options:["action" => "edit"])
+            ->createForm(HardwareType::class, $hardware, options:["type" => "edit"])
             ->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()) {

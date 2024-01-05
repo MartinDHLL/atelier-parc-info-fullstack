@@ -26,6 +26,6 @@
         "build": "encore production --progress"
     },
     "dependencies": {
-        "watch": "^1.0.2"
+        "watch": "^0.13.0"
     }
 }

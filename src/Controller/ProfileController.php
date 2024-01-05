@@ -27,7 +27,7 @@ class ProfileController extends AbstractController
     #[Route('/edit', name: '_edit')]
     public function edit(Request $request, UserInterface $user, UserRepository $userRepo): Response
     {
-        $form = $this->createForm(UserType::class, $user)->handleRequest($request);
+        $form = $this->createForm(UserType::class, $user, options:["type" => "edit"])->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $user = $form->getData();

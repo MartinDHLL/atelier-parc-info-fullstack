@@ -46,7 +46,7 @@ class TicketsController extends AbstractController
     public function edit(Ticket $ticket, TicketRepository $ticketRepo, Request $request): Response
     {
         $tickets = $ticketRepo->findAll();
-        $form = $this->createForm(TicketType::class, $ticket, options:["action" => "edit"])->handleRequest($request);
+        $form = $this->createForm(TicketType::class, $ticket, options:["type" => "edit"])->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()) {
             $ticketRepo->save($ticket, true);
             return $this->redirectToRoute('app_tickets');

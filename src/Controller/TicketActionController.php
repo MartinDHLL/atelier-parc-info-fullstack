@@ -34,7 +34,7 @@ class TicketActionController extends AbstractController
     public function add(TicketActionRepository $ticketActRepo, TicketRepository $ticketRepo, Request $request): Response
     {
         $ticket = $ticketRepo->find($request->get('id'));
-        $form = $this->createForm(TicketActionType::class, options:["action" => "add"])->handleRequest($request);
+        $form = $this->createForm(TicketActionType::class, options:["type" => "add"])->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()) {
             $ticketAction = $form->getData();
             $ticketActRepo->save($ticketAction, true);
@@ -54,7 +54,7 @@ class TicketActionController extends AbstractController
     public function edit(TicketAction $ticketAction, TicketActionRepository $ticketActRepo, Request $request): Response
     {
         $ticketActShow = $ticketActRepo->findAll();
-        $form = $this->createForm(TicketActionType::class,  $ticketAction, options:["action" => "edit"])->handleRequest($request);
+        $form = $this->createForm(TicketActionType::class,  $ticketAction, options:["type" => "edit"])->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()) {
             $ticketActShow = $form->getData();
             $ticketActRepo->save($ticketActShow, true);

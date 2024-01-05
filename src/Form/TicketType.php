@@ -39,7 +39,7 @@ class TicketType extends AbstractType
                 ]
             ])
             ->add('submit', SubmitType::class, [
-                'label' => $options['action'] === 'add' ? 'Créer' : 'Modifier',
+                'label' => $options['type'] === 'add' ? 'Créer' : 'Modifier',
                 'attr' => [
                     'class' => 'bg-green-500 hover:bg-green-800 text-white p-1 pl-4 pr-4 rounded-xl'
                 ]

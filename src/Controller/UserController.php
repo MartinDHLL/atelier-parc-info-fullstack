@@ -38,7 +38,7 @@ class UserController extends AbstractController
     public function add(UserRepository $userRepo, Request $request): Response
     {
         $users = $userRepo->findAllTechnicians();
-        $form = $this->createForm(UserType::class, null, options:["action" => "add"])->handleRequest($request);
+        $form = $this->createForm(UserType::class, null, options:["type" => "add"])->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()) {
             $user = $form->getData();
             $userRepo->save($user->setPassword($this->hasher->hashPassword($user, $form->get('password')->getData()))->setRoles(['ROLE_TECH']), true);
@@ -58,7 +58,7 @@ class UserController extends AbstractController
     public function edit(User $user, UserRepository $userRepo, Request $request): Response
     {
         $users = $userRepo->findAllTechnicians();
-        $form = $this->createForm(UserType::class, $user, options:["action" => "edit"])->handleRequest($request);
+        $form = $this->createForm(UserType::class, $user, options:["type" => "edit"])->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()) {
             $user = $form->getData();
             $userRepo->save($user, true);
