@@ -63,7 +63,7 @@ class TicketsController extends AbstractController
         ]);
     }
 
-    /* #[Route('/add', name: '_add')]
+    #[Route('/add', name: '_add')]
     public function add(TicketRepository $ticketRepo, Request $request): Response
     {
         $tickets = $ticketRepo->findAll();
@@ -81,7 +81,7 @@ class TicketsController extends AbstractController
             'tickets' => $tickets,
             'form' => $form
         ]);
-    } */
+    }
 
     /* 
     #[Route('/remove/{id}', name: '_remove')]

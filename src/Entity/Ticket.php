@@ -30,6 +30,9 @@ class Ticket
     #[ORM\OneToMany(mappedBy: 'ticket', targetEntity: TicketAction::class)]
     private Collection $actions;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $ref = null;
+
     public function __construct()
     {
         $this->actions = new ArrayCollection();
@@ -121,6 +124,18 @@ class Ticket
     public function __toString(): string
     {
         return $this -> intitule;
+    }
+
+    public function getRef(): ?string
+    {
+        return $this->ref;
+    }
+
+    public function setRef(?string $ref): self
+    {
+        $this->ref = $ref;
+
+        return $this;
     }
     
 }
