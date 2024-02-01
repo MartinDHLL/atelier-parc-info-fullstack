@@ -9,23 +9,25 @@
           identifiants invalides
         </div>
         {% endif %}
-        <div class="">
+        <div class="flex flex-col gap-y-2">
+        <label for="email">Email</label>
           <input
             type="email"
             value="{{ last_username }}"
             name="email"
             id="inputEmail"
-            class="form-control border-black border-2 text-center"
+            class="form-control text-black px-2 py-1 border-2 rounded-xl"
             autocomplete="email"
             required
             autofocus/>
         </div>
-        <div>
+        <div class="flex flex-col gap-y-2">
+          <label for="password">Mot de passe</label>
           <input
             type="password"
             name="password"
             id="inputPassword"
-            class="form-control border-black border-2 text-center"
+            class="form-control text-black px-2 py-1 border-2 rounded-xl"
             autocomplete="current-password"
             required/>
           <input
